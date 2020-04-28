@@ -1,8 +1,10 @@
-package com.programining.dialogflowapp;
+package com.programining.dialogflowapp.activities;
+
+import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
+import com.programining.dialogflowapp.R;
 
 public class MainActivity extends AppCompatActivity {
 
