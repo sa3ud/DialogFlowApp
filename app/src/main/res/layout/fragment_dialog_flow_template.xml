@@ -21,11 +21,12 @@
             android:id="@+id/tiet_appointment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Appointment" />
+            android:hint="@string/hint_appointment"
+            android:text="@string/text_default_appointment" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_book"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="64dp"
@@ -41,7 +42,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="64dp"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/btn_book"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -49,7 +50,7 @@
             android:id="@+id/tiet_response"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Response" />
+            android:hint="@string/hint_response" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button

@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.programining.dialogflowapp.R;
+import com.programining.dialogflowapp.fragments.DialogFlowTemplateFragment;
 import com.programining.dialogflowapp.interfaces.MediatorInterface;
 
 public class MainActivity extends AppCompatActivity implements MediatorInterface {
@@ -16,13 +17,14 @@ public class MainActivity extends AppCompatActivity implements MediatorInterface
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        changeFragmentTo(new DialogFlowTemplateFragment(), DialogFlowTemplateFragment.class.getSimpleName());
     }
 
     /**
      * enables changing fragments dynamically
      *
-     * @param fragmentToDisplay
-     * @param fragmentTag
+     * @param fragmentToDisplay : allow you to pass the fragment you want to display
+     * @param fragmentTag : allow to pass the fragment tag
      */
     @Override
     public void changeFragmentTo(Fragment fragmentToDisplay, String fragmentTag) {
