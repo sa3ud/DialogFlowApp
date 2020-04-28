@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">DialogFlowApp</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="btn_reset_appointment">Reset Appointment</string>
+    <string name="btn_clear_response">Clear Response</string>
+    <string name="btn_book_appointment">Book Appointment</string>
 </resources>

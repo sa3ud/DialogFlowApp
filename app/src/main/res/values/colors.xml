@@ -3,4 +3,11 @@
     <color name="colorPrimary">#29B6F6</color>
     <color name="colorPrimaryDark">#2196F3</color>
     <color name="colorAccent">#FF5722</color>
+
+
+    <color name="colorRed">#FF0000</color>
+    <color name="colorWhite">#FFF</color>
+    <color name="colorButtonConfirm">#29B6F6</color>
+
+
 </resources>
