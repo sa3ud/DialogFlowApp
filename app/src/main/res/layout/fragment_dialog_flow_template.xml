@@ -49,8 +49,10 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tiet_response"
             android:layout_width="match_parent"
+
             android:layout_height="wrap_content"
-            android:hint="@string/hint_response" />
+            android:hint="@string/hint_response"
+            android:maxHeight="120dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
