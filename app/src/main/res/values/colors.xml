@@ -8,6 +8,8 @@
     <color name="colorRed">#FF0000</color>
     <color name="colorWhite">#FFF</color>
     <color name="colorButtonConfirm">#29B6F6</color>
+    <color name="colorGreen">#8F8F8F</color>
+    <color name="colorBlack">#000000</color>
 
 
 </resources>

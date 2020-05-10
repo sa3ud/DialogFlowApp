@@ -36,10 +36,11 @@ import java.util.Map;
  */
 public class DialogFlowTemplateFragment extends Fragment {
 
-    private final static String AGENT_TOKEN = "ya29.c.Ko8ByAcm1YzDOU0wbo_yWRCznRW2aKLyyLLAeRf9RQJMfkmDgZrnryrSfB1UPx0ZWHZKZblzakHrLZWIIhKvWSOh2394wHotV00C1AmmiiPFvutIG3E0YHN1ZoOUyynfz7-vzk8MTeRr0xWA5L7VM6rF7ifoQMs8LsMTO_EtRMSnpp0z4jn9aymkJo8Y4xqXflQ";
+    private final static String AGENT_TOKEN = "ya29.c.Ko8Bygcu1F0Kqbnrn058img35pAHDx0dNpoTC8D9kSK0YXpZailAlnxYg82tevnhXkLIcqJrDCduczgKY_5ARykvPVvuRQbROrOyXs3uMVaYjupi2QYA5mkJUPqxIWjc5SuhssAPp2cgI5d305J9bixeGrqppveLLa6PuBxQO1Zxl1upFPR1dGv-y73YtRVKOys";
     private TextInputEditText etAppointment;
     private TextInputEditText etResponse;
     private Context mContext;
+
 
     /**
      * in this class we will put sample code to communicate with DialogFlow
@@ -134,20 +135,21 @@ public class DialogFlowTemplateFragment extends Fragment {
 
         RequestQueue queue = Volley.newRequestQueue(mContext);
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, MyConstants.getIntentUrl(), getAgentMessageJsonObj(appointmentMessage)
-                , new Response.Listener<JSONObject>() {
+        Response.Listener<JSONObject> onSuccessListener = new Response.Listener<JSONObject>() {
+
             @Override
             public void onResponse(JSONObject response) {
 
-                //    Gson gson = new Gson();
-                // AgentResponse agentResponse  = gson.fromJson(response.toString(), AgentResponse.class);
-                //  addMessage(agentResponse.getAgentResponseMessage(), false);
-//                    Toast.makeText(mContext, "Resopnse!", Toast.LENGTH_SHORT).show();
-                //DisplayAgentMessage(response);
+
+                //   JSONObject js=new JSONObject().getJSONObject("fulfillmentText");
                 etResponse.setText(response.toString());
 
+
             }
-        }, new Response.ErrorListener() {
+        };
+
+
+        Response.ErrorListener onErrorListener = new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.d("response.error", error.toString() + "/" + error.getMessage());
@@ -155,8 +157,17 @@ public class DialogFlowTemplateFragment extends Fragment {
 
                 error.printStackTrace();
             }
-        }) {
-            //
+        };
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                (
+                        Request.Method.POST,
+                        MyConstants.getIntentUrl(),
+                        getAgentMessageJsonObj(appointmentMessage),
+                        onSuccessListener,
+                        onErrorListener
+                ) {
+            //pass token to the webservice!
             @Override
             public Map<String, String> getHeaders() {
                 HashMap<String, String> headers = new HashMap<>();
@@ -166,9 +177,11 @@ public class DialogFlowTemplateFragment extends Fragment {
             }
 
         };
+
         int socketTimeout = 30000;//30 seconds - change to what you want
         RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
         jsonObjectRequest.setRetryPolicy(policy);
+
         queue.add(jsonObjectRequest);
 
 
@@ -192,13 +205,18 @@ public class DialogFlowTemplateFragment extends Fragment {
     private JSONObject getAgentMessageJsonObj(String msgForAgent) {
 
         try {
+
             JSONObject jsonObj = new JSONObject();
+
             JSONObject jsonObjQueryInput = new JSONObject();
 
             JSONObject jsonObjText = new JSONObject();
+
             jsonObjText.put(MyConstants.API_JSON_KEY_TEXT, msgForAgent);
             jsonObjText.put(MyConstants.API_JSON_KEY_LANGUAGE_CODE, MyConstants.API_JSON_VALUE_LANGUAGE_CODE);
+
             jsonObjQueryInput.put(MyConstants.API_JSON_KEY_TEXT, jsonObjText);
+
             jsonObj.put(MyConstants.API_JSON_KEY_QUERY_INPUT, jsonObjQueryInput);
 
             return jsonObj;
